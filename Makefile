@@ -19,7 +19,7 @@ OBJS = $(OBJ_DIR)/main.o
 $(teste): $(OBJS)
 	$(CC) $^ $(CPPFLAGS) -o $@
 
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/arielslib_list.h
+$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_list.h
 		$(CC) -c $(CPPFLAGS) -o $@ $<
 
 dir:
