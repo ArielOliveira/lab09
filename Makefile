@@ -20,12 +20,12 @@ linux: arielslib.a arielslib.so prog_estatico prog_dinamico
 
 #LINUX
 
-arielslib.a: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h
+arielslib.a: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h $(INC_DIR)/arielslib_quick_sort.h $(INC_DIR)/arielslib_binary_search.h
 		$(CC) $(CPPFLAGS) -c $(SRC_DIR)/main_lib.cpp -o $(OBJ_DIR)/main_lib.o
 		$(AR) rcs $(LIB_DIR)/$@ $(OBJ_DIR)/main_lib.o 
 		@echo "+++ [Biblioteca estatica criada em $(LIB_DIR)/$@] +++"
 
-arielslib.so: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h
+arielslib.so: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h $(INC_DIR)/arielslib_quick_sort.h $(INC_DIR)/arielslib_binary_search.h
 		$(CC) $(CPPFLAGS) -fPIC -c $(SRC_DIR)/main_lib.cpp -o $(OBJ_DIR)/main_lib.o
 		$(CC) -shared -fPIC -o $(LIB_DIR)/$@ $(OBJ_DIR)/main_lib.o
 		@echo "+++ [Biblioteca dinamica criada em $(LIB_DIR)/$@] +++"
