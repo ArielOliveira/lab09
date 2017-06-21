@@ -6,7 +6,6 @@ using std::cout;
 using std::endl;
 
 namespace edb1 {
-	extern "C++" template <typename T>class List;
 	template<typename T>
 	class List {
 		private:
@@ -53,7 +52,10 @@ namespace edb1 {
 			}
 
 			void insertAtHead(T data) {
-				typename List<T>::Node *inserted = new typename List<T>::Node {data, nullptr, nullptr};
+				typename List<T>::Node *inserted = new typename List<T>::Node();
+				inserted->data = data;
+				inserted->next = NULL;
+				inserted->previous = NULL;
 				typename List<T>::Node *h = this->head;
 
 				h->next->previous = inserted;
@@ -66,7 +68,10 @@ namespace edb1 {
 			}
 		
 			void insertAtTail(T data) {
-				typename List<T>::Node *inserted = new typename List<T>::Node {data, nullptr, nullptr};
+				typename List<T>::Node *inserted = new typename List<T>::Node();
+				inserted->data = data;
+				inserted->next = NULL;
+				inserted->previous = NULL;
 				typename List<T>::Node *t = this->tail;
 
 				t->previous->next = inserted;
@@ -84,7 +89,10 @@ namespace edb1 {
 				return;
 				}
 
-				typename List<T>::Node *inserted = new typename List<T>::Node {data, nullptr, nullptr};
+				typename List<T>::Node *inserted = new typename List<T>::Node();
+				inserted->data = data;
+				inserted->next = NULL;
+				inserted->previous = NULL;
 				typename List<T>::Node *sentry;
 
 				findNode(index, sentry);

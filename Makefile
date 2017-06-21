@@ -10,17 +10,32 @@ TEST_DIR = ./test
 
 CC = g++
 
-CPPFLAGS = -Wall -pedantic -ansi -std=c++11 -I. -I$(INC_DIR)
+CPPFLAGS = -Wall -pedantic -std=c++11 -ansi -I. -I$(INC_DIR)
+ARCHIVE = ar
 
-OBJS = $(OBJ_DIR)/main.o
 
-.PHONY: dir
+.PHONY: linux
 
-$(teste): $(OBJS)
-	$(CC) $^ $(CPPFLAGS) -o $@
+linux: arielslib.a arielslib.so prog_estatico prog_dinamico
 
-$(OBJ_DIR)/main.o: $(SRC_DIR)/main.cpp $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_list.h
-		$(CC) -c $(CPPFLAGS) -o $@ $<
+#LINUX
+
+arielslib.a: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h
+		$(CC) $(CPPFLAGS) -c $(SRC_DIR)/main_lib.cpp -o $(OBJ_DIR)/main_lib.o
+		$(AR) rcs $(LIB_DIR)/$@ $(OBJ_DIR)/main_lib.o 
+		@echo "+++ [Biblioteca estatica criada em $(LIB_DIR)/$@] +++"
+
+arielslib.so: $(SRC_DIR)/main_lib.cpp $(INC_DIR)/arielslib_list.h $(INC_DIR)/arielslib_stack.h $(INC_DIR)/arielslib_merge_sort.h
+		$(CC) $(CPPFLAGS) -fPIC -c $(SRC_DIR)/main_lib.cpp -o $(OBJ_DIR)/main_lib.o
+		$(CC) -shared -fPIC -o $(LIB_DIR)/$@ $(OBJ_DIR)/main_lib.o
+		@echo "+++ [Biblioteca dinamica criada em $(LIB_DIR)/$@] +++"
+
+prog_estatico:
+	$(CC) $(CPPFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/arielslib.a -o $(OBJ_DIR)/$@
+
+prog_dinamico:
+	$(CC) $(CPPFLAGS) $(SRC_DIR)/main.cpp $(LIB_DIR)/arielslib.so -o $(OBJ_DIR)/$@
+
 
 dir:
 	mkdir -p bin

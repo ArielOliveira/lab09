@@ -4,7 +4,6 @@
 #include <iostream>
 
 namespace edb1 {
-	extern "C++" template <typename T>class Stack;
 	template<typename T>
 	class Stack {
 		private:
