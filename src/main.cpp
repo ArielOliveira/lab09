@@ -2,10 +2,14 @@
 using std::cout;
 using std::endl;
 
+#include <string>
+using std::string;
+
 #include <cstdlib>
 
 #include "arielslib_list.h"
 #include "arielslib_stack.h"
+#include "arielslib_queue.h"
 #include "arielslib_merge_sort.h"
 #include "arielslib_quick_sort.h"
 #include "arielslib_binary_search.h"
@@ -70,6 +74,12 @@ int main() {
 	
 	List<int> l;
 	Stack<int> s(20);
+	s.push(5);
+	std::cout << s.top() << std::endl;
+
+	MyQueue<string> q(5);
+	q.pushBack("brasileirinho");
+	cout << q.front() << endl;
 
 	return 0;
 }
