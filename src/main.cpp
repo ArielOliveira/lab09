@@ -46,7 +46,7 @@ void printVector(T *v, int n) {
 }
 
 int main() {
-
+	
 	//testa merge_sort
 	int k = randomizeInt();
 	float *v = vectorSorter(k);
@@ -57,17 +57,19 @@ int main() {
 	std::cout << "Vetor ordenado" << std::endl;
 	printVector<float>(v, k);
 	std::cout << std::endl;
-
+	
 	//testa binary_search
 	std::cout << "Testando binary search" << std::endl;
 	for (int i = 0; i < 5; i++) {
-		if (binarySearch<float>(v, k, v[i])) {
+		if (binarySearch<float>(v, v[i], k)) {
 			std::cout << "Elemento " << v[i] << " " << "encontrado." << std::endl;
 		} else {
 			std::cout << "Elemento " << v[i] << " " << "não encontrado." << std::endl;
 		}	
 	}
 	
+	List<int> l;
+	Stack<int> s(20);
 
 	return 0;
 }

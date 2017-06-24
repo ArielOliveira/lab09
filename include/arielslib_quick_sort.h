@@ -2,6 +2,10 @@
 #define ARIELSLIB_QUICK_SORT_H
 
 namespace edb1 {
+
+	template <typename T>
+	bool binarySearch(T *v, int n, T x);
+
 	template <typename T> 
 	void quickSort(T *v, int left, int right) {
 		int left1 = left, right1 = right;

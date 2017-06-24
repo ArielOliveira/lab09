@@ -4,6 +4,7 @@
 #include <iostream>
 
 namespace edb1 {
+
 	template<typename T>
 	class Stack {
 		private:
