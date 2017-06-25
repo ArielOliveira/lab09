@@ -57,7 +57,8 @@ int main() {
 	std::cout << "Vetor desordenado" << std::endl;
 	printVector<float>(v, k);
 	std::cout << std::endl;
-	mergeSort<float>(v, k);
+	quickSort<float>(v, 0, k-1);
+	//mergeSort<float>(v, k);
 	std::cout << "Vetor ordenado" << std::endl;
 	printVector<float>(v, k);
 	std::cout << std::endl;
@@ -65,7 +66,7 @@ int main() {
 	//testa binary_search
 	std::cout << "Testando binary search" << std::endl;
 	for (int i = 0; i < 5; i++) {
-		if (binarySearch<float>(v, v[i], k)) {
+		if (binarySearch<float>(v, v[i], k-1)) {
 			std::cout << "Elemento " << v[i] << " " << "encontrado." << std::endl;
 		} else {
 			std::cout << "Elemento " << v[i] << " " << "não encontrado." << std::endl;
@@ -78,8 +79,18 @@ int main() {
 	std::cout << s.top() << std::endl;
 
 	MyQueue<string> q(5);
-	q.pushBack("brasileirinho");
+	bool what;
+	what = q.pushBack("brasileirinho");
+	what = q.pushBack("chinesinho");
+	what = q.pushBack("americaninho");
+	what = q.pushBack("xibata");
+	what = q.pushBack("disgraça");
+	what = q.pushBack("merda");
+
 	cout << q.front() << endl;
+	cout << what << endl;
+	q.popFront();
+
 
 	return 0;
 }
