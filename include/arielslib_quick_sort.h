@@ -23,7 +23,7 @@ namespace edb1 {
 		}
 		if (left < right1) quickSort(v,left,right1);
 		if (left1 < right) quickSort(v,left1,right);
-	}	
+	}		
 }
 	
 #endif

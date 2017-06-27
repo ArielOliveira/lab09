@@ -26,11 +26,11 @@ namespace edb1 {
 
 			void insertAtHead(T data);
 			void insertAtTail(T data);
-			void insertAt(int index, T data);
+			bool insertAt(int index, T data);
 
-			void removeAtHead();
-			void removeAtTail();
-			void removeAt(int index);
+			bool removeAtHead();
+			bool removeAtTail();
+			bool removeAt(int index);
 
 			T getData(int index);
 
@@ -88,11 +88,8 @@ namespace edb1 {
 	}
 
 	template <typename T>
-	void List<T>::insertAt(int index, T data) {
-		if (index > size || index < 0) {
-			std::cout << "Impossível inserir. Posição fora da lista" << std::endl;
-		return;
-		}
+	bool List<T>::insertAt(int index, T data) {
+		if (index > size || index < 0) return false;
 
 		typename List<T>::Node *inserted = new typename List<T>::Node();
 		inserted->data = data;
@@ -103,38 +100,37 @@ namespace edb1 {
 		findNode(index, sentry);
 		connect(inserted, sentry);
 		size++;
+
+		return true;
 	}
 	
 	template <typename T>
-	void List<T>::removeAtHead() {
-		if (head->next == tail) {
-			cout << "Lista vazia!" << endl;
-			return;
-		}
+	bool List<T>::removeAtHead() {
+		if (head->next == tail) return false;
+
 		typename List<T>::Node *tmp = head->next;
 		head->next = tmp->next;
 		tmp->next->previous = head;
 		delete tmp;
+
+		return true;
 	}
 	
 	template <typename T>
-	void List<T>::removeAtTail() {
-		if (tail->previous == head) {
-			cout << "Lista vazia!" << endl;
-			return;
-		}
+	bool List<T>::removeAtTail() {
+		if (tail->previous == head) return false;
+
 		typename List<T>::Node *tmp = tail->previous;
 		tail->previous = tmp->previous;
 		tmp->previous->next = tail;
 		delete tmp;
+
+		return true;
 	}
 
 	template <typename T>
-	void List<T>::removeAt(int index) {
-		if (index > size || index < 0) {
-			std::cout << "Impossível remover. Posição fora da lista" << std::endl;
-			return;
-		}
+	bool List<T>::removeAt(int index) {
+		if (index > size || index < 0) return false;
 
 		typename List<T>::Node *sentry;
 
@@ -143,6 +139,8 @@ namespace edb1 {
 		tmp->previous = sentry->previous;
 		tmp->previous->next = tmp;
 		delete sentry;
+
+		return true;
 	}
 
 	template <typename T>

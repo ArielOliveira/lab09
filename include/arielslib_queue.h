@@ -16,7 +16,6 @@ namespace edb1 {
 		public:
 			MyQueue(int size);
 			~MyQueue();
-			int getSize();
 			bool pushBack(T data);
 			bool popFront();
 			T front();
